@@ -1,20 +1,29 @@
 services:
+  app:
+    image: gutenye/spree
+    build:
+      platforms: 
+        - linux/arm64
+        - linux/amd64
+    ports:
+      - "3000:3000"
+    environment:
+      - SECRET_KEY_BASE=2fad5c0b79d25e4765d3018d8c740f8c3a665f0e5c
+      - DATABASE_URL=postgres://postgres:password@postgres:5432/spree
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      - postgres
+      - redis
+
   postgres:
     image: postgres:16-alpine
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
     volumes:
-      - 'postgres:/var/lib/postgresql/data'
-    ports:
-      - "5432:5432"
+      - './data/db:/var/lib/postgresql/data'
+
   redis:
     image: redis:7-alpine
-    ports:
-      - "6379:6379"
     volumes:
-      - 'redis:/data'
-
-volumes:
-  postgres:
-  redis:
+      - './data/redis:/data'
