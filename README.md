@@ -1,3 +1,5 @@
+- [README.guten.me](./README.guten.me)
+
 # Spree Starter
 
 This is a starter kit for [Spree Commerce](https://spreecommerce.org) - the [open-source eCommerce platform](https://spreecommerce.org) for [Rails](https://spreecommerce.org/category/ruby-on-rails/). 
